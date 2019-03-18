@@ -2,7 +2,7 @@
 from typing import Dict
 
 import numpy as np
-import scipy
+from scipy import optimize
 import tensorflow as tf
 
 from core import BaseDataSource, BaseModel
@@ -456,7 +456,7 @@ def estimate_gaze_from_landmarks(iris_landmarks, iris_centre, eyeball_centre, ey
         return out, np.array([dout_dtheta, dout_dphi, dout_ddelta, dout_dphase])
 
     phase = 0.02
-    result = scipy.optimize.minimize(gaze_fit_loss_func, x0=[theta, phi, delta, phase],
+    result = optimize.minimize(gaze_fit_loss_func, x0=[theta, phi, delta, phase],
                                      bounds=(
                                          (-0.4*np.pi, 0.4*np.pi),
                                          (-0.4*np.pi, 0.4*np.pi),
