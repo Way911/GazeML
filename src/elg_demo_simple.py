@@ -239,8 +239,7 @@ if __name__ == '__main__':
                     O = ((x1 + x2)/2, (y1 + y2)/2)
                     face_width, face_height = tuple(np.round(face['face_coordinate'][2:]).astype(np.int32))
                     frame_height, frame_width, _ = bgr.shape
-                    R = max(frame_height * frame_height/face_height,
-                            frame_width * frame_width/face_width)/2
+                    R = max(frame_height-face_height, frame_width-face_width) * 2
                     v_x1 = left_eyegaze['vector_x_component']
                     v_y1 = left_eyegaze['vector_y_component']
                     v_x2 = right_eyegaze['vector_x_component']
